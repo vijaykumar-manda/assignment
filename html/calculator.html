@@ -1,0 +1,114 @@
+<html>
+    <head>
+        <title>Basic Calculator</title>
+        <style>
+             .calculator {
+            width: 400px;
+            margin: 2% auto 0px;
+            border: 1px solid #686666;
+            border-radius: 5px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .value {
+            width: 100%;
+            height: 90px;
+            border-radius: 5px;
+            font-size: 50px;
+            text-align: end;
+        }
+
+        .button {
+            width: 25%; 
+            height: 60px;
+            font-size: 24px;
+            text-align: center;
+           
+        }
+
+        .equal {
+            width: 100%;
+            height: 60px;
+        }
+        .row{
+            display: flex;
+            flex-wrap: nowrap; 
+            justify-content: space-between;
+        }
+        
+        .button {
+            width: 25%;
+            height: 60px;
+            font-size: 24px;
+            text-align: center;
+        }
+        </style>
+    </head>
+    <script>
+       function addToValue(value) {
+        const inputElement = document.getElementById('value');
+        const currentValue = inputElement.value;
+        const lastChar = currentValue[currentValue.length - 1];
+  if (lastChar === value && (value === '+' || value === '-' || value === '*' || value === '/')) {
+    return;
+  }
+
+  inputElement.value += value;
+}
+        function clearValue(){
+            document.getElementById('value').value = '';
+        }
+        function calculateValue(){
+            const textValue = document.getElementById('value').value
+            try{
+                const value = eval(textValue)
+                document.getElementById('value').value = value;
+            }catch(e){
+                document.getElementById('value').value = 'Error';
+            
+            }
+        }
+        
+        
+    </script>
+    <body>
+        <div class="calculator">
+            <input class="value" type="text" id="value">
+            <br>      
+            <div class="row">
+            <button class="button" onclick="addToValue(7)">7</button>
+            <button class="button"  onclick="addToValue(8)">8</button>
+            <button class="button" onclick="addToValue(9)">9</button>
+            <button class="button" onclick="addToValue('+')">+</button>
+        </div>
+            <div class="row">
+
+            <button class="button"  onclick="addToValue(4)">4</button>
+            <button class="button" onclick="addToValue(5)">5</button>
+            <button class="button" onclick="addToValue(6)">6</button>
+            <button class="button" onclick="addToValue('-')">-</button>
+            </div>
+            
+            <div class="row">
+
+            <button class="button" onclick="addToValue(1)">1</button>
+            <button class="button" onclick="addToValue(2)">2</button>
+            <button class="button" onclick="addToValue(3)">3</button>
+            <button class="button" onclick="addToValue('/')">/</button>
+            </div>
+            
+            <div class="row">
+            <button class="button" onclick="addToValue('.')">.</button>
+            <button class="button" onclick="addToValue(0)">0</button>
+            <button class="button" onclick="addToValue('*')">*</button>
+            <button class="button" onclick="clearValue()">AC</button>
+            </div>
+
+            <button class="equal" onclick="calculateValue()">=</button>
+            
+        </div>
+
+    </body>
+</html>

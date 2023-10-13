@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Survey Form</title>
+    <style>
+        .survey {
+            width: 500px;
+            margin: 2% auto 0;
+            border: 1px solid #000;
+            border-radius: 5px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .names, .dropdown, .gender, .details {
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 20px;
+        }
+
+        .names div, .dropdown div, .details div {
+            margin-right: 20px;
+        }
+
+        .dropdown{
+            margin-top: 5px;
+            margin-bottom: 0px;
+        }
+
+        input, select {
+            width: 100%;
+            height: 25px;
+        }
+
+        .buttons {
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        .buttons button {
+            margin-right: 20px;
+        }
+
+        .gender input[type="radio"] {
+            vertical-align: middle;
+            margin-right: 5px;
+        }
+
+        .dob, .profession {
+            margin-bottom: 20px;
+            margin-right: 20px;
+        }
+
+        .gender input {
+            margin-top: 0px;
+        }
+
+        .details label {
+            width: 100px;
+            text-align: right;
+            margin-right: 10px;
+        }
+        .button-submit{
+            
+            height: 40px;
+            border-radius: 15px;
+            
+        }
+        .button-reset{
+           
+            height: 40px;
+            border-radius: 15px;
+            
+        }
+    </style>
+</head>
+<body>
+    <div class="survey">
+        <form id="surveyForm" onsubmit="event.preventDefault(); displayDetails();">
+            <div class="names">
+                <div>
+                    <label for="firstname">First name</label>
+                    <input type="text" id="firstname" required>
+                </div>
+                <div>
+                    <label for="lastname">Last name</label>
+                    <input type="text" id="lastname" required>
+                </div>
+            </div>
+            <div class='dob'>
+                <label for="dob">Date of birth</label>
+                <input id="dob" type="date" required>
+            </div>
+            <div class="dropdown">
+                <div>
+                    <label for="country">Country:</label>
+                    <select style="height: 25px; width: 150px;" id="country" required>
+                        <option value="">Select Country</option>
+                        <option value="USA">USA</option>
+                        <option value="Canada">Canada</option>
+                        <option value="India">India</option>
+                        <option value="UK">UK</option>
+                    </select>
+                </div>
+                <div class="gender">
+                    <label>Gender:</label>
+                    <input type="radio" id="male" name="gender" value="male" required>
+                    <label for="male">Male</label>
+
+                    <input type="radio" id="female" name="gender" value="female">
+                    <label for="female">Female</label>
+
+                    <input type="radio" id="others" name="gender" value="others">
+                    <label for="others">Others</label>
+                </div>
+            </div>
+            <div class="profession">
+                <label for="profession">Profession</label>
+                <input type="text" id="profession" required>
+            </div>
+            <div class="details">
+                <div>
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div>
+                    <label for="number">Number</label>
+                    <input type="number" id="number" required>
+                </div>
+            </div>
+            <div class="buttons">
+                <button class="button-submit" type="submit">Submit</button>
+                <button class="button-reset" type="reset">Reset</button>
+            </div>
+        </form>
+    </div>
+    <script>
+        function displayDetails() {
+            console.log("submitted")
+            const firstName = document.getElementById("firstname").value;
+            const lastName = document.getElementById("lastname").value;
+            const dob = document.getElementById("dob").value;
+            const country = document.getElementById("country").value;
+            const gender = document.querySelector('input[name="gender"]:checked').value;
+            const profession = document.getElementById("profession").value;
+            const email = document.getElementById("email").value;
+            const number = document.getElementById("number").value;
+            if (!/^\d{10}$/.test(number)) {
+                alert("Please enter a 10-digit number for the 'Number' field.");
+                return; // Prevent form submission if validation fails
+            }
+            const details = `First Name: ${firstName}\nLast Name: ${lastName}\nDate of Birth: ${dob}\nCountry: ${country}\nGender: ${gender}\nProfession: ${profession}\nEmail: ${email}\nNumber: ${number}`;
+
+            alert("Entered Details:\n" + details);
+            document.getElementById("surveyForm").reset();
+
+        }
+    </script>
+</body>
+</html>

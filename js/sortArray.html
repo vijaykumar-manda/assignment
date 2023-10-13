@@ -1,0 +1,20 @@
+<html>
+<head>
+    <title>Sort Array in descending order</title>
+</head>
+<body>
+   <p>Entered Array: <p id= "question"></p></p>
+   <p> reversed Array:<p id="solution"></p></p>
+   <script>
+        let stringArray = prompt("Enter array seperated by space:")
+        stringArray = stringArray.split(' ')
+        let intArray = stringArray.map(word =>{
+            return parseInt(word)
+        })
+        const reverseArray = intArray.sort((a,b)=>{return b-a})
+        console.log(reverseArray)
+        document.getElementById("question").innerText = stringArray;
+        document.getElementById("solution").innerText = reverseArray;
+    </script>
+</body>
+</html>
